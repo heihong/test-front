@@ -19,6 +19,6 @@ export const addRequest = createAction(
 );
 
 export const addRequestSuccess = createAction(
-  "[Shop] Load Request success",
-  props<{ price: number }>()
+  "[Shop] Load add Request success",
+  props<{ offers: any }>()
 );

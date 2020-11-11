@@ -6,6 +6,16 @@ export const selectBooks = createSelector(
   (state) => state.books
 );
 
+export const selectCart = createSelector(
+  fromReducer.bookStateSelector,
+  (state) => state.cart
+);
+
+export const selectCartbyIsbn = createSelector(
+  fromReducer.bookStateSelector,
+  (state) => state.cart.map((book) => book.isbn)
+);
+
 export const selectBook = createSelector(
   fromReducer.bookStateSelector,
   (state, { isbn }) => state.books.find((book) => book.isbn === isbn)
@@ -14,4 +24,9 @@ export const selectBook = createSelector(
 export const selectLoading = createSelector(
   fromReducer.bookStateSelector,
   (state) => state.isLoading
+);
+
+export const selectResult = createSelector(
+  fromReducer.bookStateSelector,
+  (state) => state.result.filter((el) => el != null)
 );

@@ -11,5 +11,6 @@ import * as fromSelectors from "../store/shop.selectors";
 export class BooksComponent {
   books$ = this.bookStore.select(pipe(fromSelectors.selectBooks));
   loading$ = this.bookStore.select(pipe(fromSelectors.selectLoading));
+  searchText: string;
   constructor(private bookStore: Store<fromReducer.BookState>) {}
 }

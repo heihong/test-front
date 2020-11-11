@@ -9,12 +9,26 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools/";
 import { BooksResolver } from "./resolver/books.resolver";
 import { DetailsBookModule } from "./books/details-book/details-book.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  MatButton,
+  MatButtonModule,
+  MatToolbarModule,
+} from "@angular/material";
+import { HeaderComponent } from "./header/header.component";
 
 export const routes: Routes = [
   {
     path: "books",
     loadChildren: () =>
       import("./books/books.module").then((m) => m.BooksModule),
+    resolve: {
+      data: BooksResolver,
+    },
+  },
+  {
+    path: "cart",
+    loadChildren: () => import("./cart/cart.module").then((m) => m.CartModule),
     resolve: {
       data: BooksResolver,
     },
@@ -41,12 +55,13 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
+    MatToolbarModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    BooksModule,
-    DetailsBookModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument(),

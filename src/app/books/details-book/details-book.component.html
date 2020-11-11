@@ -6,7 +6,9 @@
       <p>
         {{ data.book?.synopsis }}
       </p>
-      <button mat-button color="primary">Ajouter au panier</button>
+      <button mat-button color="primary" (click)="addRequest(data.book)">
+        Ajouter au panier
+      </button>
     </div>
   </div>
 </div>

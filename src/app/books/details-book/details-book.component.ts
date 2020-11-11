@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { select, Store } from "@ngrx/store";
+import { cpuUsage } from "process";
 import * as fromActions from "../../store/shop.action";
 import * as fromReducer from "../../store/shop.reducer";
 import * as fromSelectors from "../../store/shop.selectors";
@@ -19,6 +20,7 @@ export class DetailsBookComponent {
   ) {}
 
   addRequest(book: fromReducer.Book) {
+    console.log(book);
     this.bookStore.dispatch(fromActions.addRequest({ book }));
   }
 }
