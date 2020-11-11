@@ -1,0 +1,17 @@
+.container {
+  text-align: center;
+  p {
+    text-align: left;
+  }
+  img {
+    max-width: 500px;
+    max-height: 500px;
+    margin: 10px;
+  }
+  .body-container {
+    display: flex;
+  }
+  .items-container {
+    text-align: left;
+  }
+}

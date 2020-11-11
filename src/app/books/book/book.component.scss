@@ -1,0 +1,24 @@
+.card-content {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  max-width: 150px;
+  mat-card-title {
+    text-align: center;
+    font-size: 12px;
+  }
+  img-content {
+    max-width: 150px;
+  }
+
+  p {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 500px;
+    font-size: 12px;
+  }
+  mat-card-actions {
+    text-align: end;
+  }
+}

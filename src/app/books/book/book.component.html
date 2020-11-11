@@ -1,0 +1,21 @@
+<div (click)="more(book.isbn)">
+  <mat-card class="card-content">
+    <mat-card-header>
+      <mat-card-title>{{ book.title }}</mat-card-title>
+    </mat-card-header>
+    <ng-container class="img-content">
+      <img mat-card-image [src]="book.cover" />
+    </ng-container>
+    <mat-card-content>
+      <p>{{ book.price }} €</p>
+      <p>
+        {{ book.synopsis }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="more(book.isbn)">
+        En savoir plus
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
