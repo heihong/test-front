@@ -16,7 +16,6 @@ import {
   MatToolbarModule,
 } from "@angular/material";
 import { HeaderComponent } from "./header/header.component";
-import { CartResolver } from "./resolver/cart.resolver";
 
 export const routes: Routes = [
   {
@@ -30,9 +29,6 @@ export const routes: Routes = [
   {
     path: "cart",
     loadChildren: () => import("./cart/cart.module").then((m) => m.CartModule),
-    resolve: {
-      data: CartResolver,
-    },
   },
   {
     path: "details-book/:isbn",

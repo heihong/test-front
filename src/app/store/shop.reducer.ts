@@ -16,6 +16,11 @@ const initBookReducer = createReducer(
     cart: [...state.cart, book],
     totalAmount: state.totalAmount + book.price,
   })),
+  on(fromActions.deleteRequest, (state, { book }) => ({
+    ...state,
+    cart: state.cart.filter((el) => el.isbn !== book.isbn),
+    totalAmount: state.totalAmount - book.price,
+  })),
   on(fromActions.loadRequestCart, (state) => ({
     ...state,
     isLoading: true,

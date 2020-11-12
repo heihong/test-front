@@ -1,6 +1,9 @@
 import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
-import { Book } from "src/app/store/model";
+import { Store } from "@ngrx/store";
+import { Book, ShopState } from "src/app/store/model";
+import * as fromActions from "../../store/shop.action";
+import * as fromSelectors from "../../store/shop.selectors";
 
 @Component({
   selector: "app-book-cart",
@@ -10,9 +13,13 @@ import { Book } from "src/app/store/model";
 export class BookCartComponent {
   @Input() book: Book;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private shopSate: Store<ShopState>) {}
 
   more(isbn: string) {
     this.router.navigate(["/details-book", isbn]);
+  }
+
+  delete(book) {
+    this.shopSate.dispatch(fromActions.deleteRequest({ book }));
   }
 }

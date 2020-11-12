@@ -21,6 +21,11 @@ export const addRequest = createAction(
 export const loadRequestCart = createAction("[Shop] Load Request cart success");
 
 export const loadRequestCartSuccess = createAction(
-  "[Shop] Load add Request success",
+  "[Shop] Load Request success cart",
   props<{ offers: OfferPercentageMinus[] | OfferSlice[] }>()
+);
+
+export const deleteRequest = createAction(
+  "[Shop] Load delete Request success",
+  props<{ book: Book }>()
 );

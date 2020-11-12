@@ -29,7 +29,7 @@ export class ShopEffects {
       mergeMap(([, isbnList]) => {
         return this.http
           .get<{ offers }>(
-            ` http://henri-potier.xebia.fr/books/${isbnList}/commercialOffers`
+            `http://henri-potier.xebia.fr/books/${isbnList}/commercialOffers`
           )
           .pipe(
             map(({ offers }) => fromActions.loadRequestCartSuccess({ offers })),
