@@ -1,9 +1,12 @@
 <ng-container
-  *ngIf="{
-    cart: cart$ | async,
-    loading: loading$ | async,
-    total: total$ | async
-  } as data"
+  *ngIf="
+    {
+      cart: cart$ | async,
+      loading: loading$ | async,
+      total: total$ | async
+    } as data;
+    else loading
+  "
   ><div *ngIf="data.loading === false" class="container">
     <app-book-cart *ngFor="let cart of data.cart" [book]="cart"></app-book-cart>
   </div>

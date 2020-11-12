@@ -19,16 +19,14 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(private shopState: Store<ShopState>) {}
 
   ngOnInit() {
-    this.subscription.add(
+    /*  this.subscription.add(
       this.shopState.select(fromSelectors.selectCart).subscribe((cart) => {
-        if (cart.length) {
-          this.shopState.dispatch(fromActions.loadRequestCart());
-        }
+        if (cart.length) {*/
+    this.shopState.dispatch(fromActions.loadRequestCart());
+    /*       }
       })
-    );
+    );*/
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 }

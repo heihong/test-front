@@ -1,7 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { map, mergeMap, catchError, withLatestFrom } from "rxjs/operators";
+import {
+  map,
+  mergeMap,
+  catchError,
+  withLatestFrom,
+  filter,
+} from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 import * as fromActions from "./shop.action";
@@ -22,7 +28,7 @@ export class ShopEffects {
     )
   );
 
-  loadRequestCart$ = createEffect(() =>
+  /* loadRequestCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.loadRequestCart),
       withLatestFrom(this.store.select(fromSelectors.selectCartbyIsbn)),
@@ -35,6 +41,32 @@ export class ShopEffects {
             map(({ offers }) => fromActions.loadRequestCartSuccess({ offers })),
             catchError((error) => of(fromActions.loadRequestFailure({ error })))
           );
+      })
+    )
+  );*/
+
+  loadRequestCart$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromActions.loadRequestCart),
+      withLatestFrom(this.store.select(fromSelectors.selectCart)),
+      filter(([, book]) => book.length > 0),
+      mergeMap(([, cart]) => {
+        console.log(cart.length);
+        if (cart.length > 0) {
+          //test
+          return this.http
+            .get<{ offers }>(
+              `http://henri-potier.xebia.fr/books/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers`
+            )
+            .pipe(
+              map(({ offers }) =>
+                fromActions.loadRequestCartSuccess({ offers })
+              ),
+              catchError((error) =>
+                of(fromActions.loadRequestFailure({ error }))
+              )
+            );
+        }
       })
     )
   );

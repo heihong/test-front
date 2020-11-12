@@ -2,9 +2,11 @@
   <mat-label>Search a book</mat-label>
   <input matInput type="text" [(ngModel)]="searchText" />
 </mat-form-field>
-
 <ng-container
-  *ngIf="{ books: books$ | async, loading: loading$ | async } as data"
+  *ngIf="
+    { books: books$ | async, loading: loading$ | async } as data;
+    else loading
+  "
   ><div *ngIf="data.loading === false" class="container">
     <app-book
       *ngFor="let book of data.books | filter: searchText"
