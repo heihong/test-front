@@ -26,7 +26,8 @@ export const selectLoading = createSelector(
   (state) => state.isLoading
 );
 
-export const selectResult = createSelector(
+/*export const selectResult = createSelector(
   fromReducer.bookStateSelector,
   (state) => state.result.filter((el) => el != null)
 );
+*/

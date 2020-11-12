@@ -11,11 +11,12 @@ import * as fromReducer from "../store/shop.reducer";
 @Injectable({
   providedIn: "root",
 })
-export class BooksResolver implements Resolve<boolean> {
+export class CartResolver implements Resolve<boolean> {
   constructor(private bookStore: Store<fromReducer.BookState>) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    this.bookStore.dispatch(fromActions.loadRequestBook());
+    console.log("test");
+    this.bookStore.dispatch(fromActions.loadRequestCart());
     return state;
   }
 }

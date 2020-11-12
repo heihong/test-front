@@ -1,7 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { map, mergeMap, catchError, withLatestFrom } from "rxjs/operators";
+import {
+  map,
+  mergeMap,
+  catchError,
+  withLatestFrom,
+  switchMap,
+} from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 import * as fromActions from "./shop.action";
@@ -10,9 +16,9 @@ import * as fromSelectors from "./shop.selectors";
 
 @Injectable()
 export class BookEffects {
-  loadRequest$ = createEffect(() =>
+  loadRequestBook$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(fromActions.loadRequest),
+      ofType(fromActions.loadRequestBook),
       mergeMap((_) =>
         this.http
           .get<fromReducer.Book[]>("http://henri-potier.xebia.fr/books")
@@ -25,17 +31,18 @@ export class BookEffects {
       )
     )
   );
-  addRequest$ = createEffect(() =>
+
+  loadRequestCart$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(fromActions.addRequest),
+      ofType(fromActions.loadRequestCart),
       withLatestFrom(this.store.select(fromSelectors.selectCartbyIsbn)),
       mergeMap(([, isbnList]) => {
         return this.http
           .get<{ offers }>(
-            `http://henri-potier.xebia.fr/books/${isbnList}/commercialOffers`
+            ` http://henri-potier.xebia.fr/books/${isbnList}/commercialOffers`
           )
           .pipe(
-            map(({ offers }) => fromActions.addRequestSuccess({ offers })),
+            map(({ offers }) => fromActions.loadRequestCartSuccess({ offers })),
             catchError((error) => of(fromActions.loadRequestFailure({ error })))
           );
       })

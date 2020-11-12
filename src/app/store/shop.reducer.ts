@@ -24,7 +24,8 @@ export interface BookState {
   isLoading: boolean;
   cart: Book[];
   totalAmount: number;
-  result: number[];
+  offers: OfferPercentageMinus[] | OfferSlice[];
+  totalCart: number;
 }
 
 export const initialState: BookState = {
@@ -32,7 +33,8 @@ export const initialState: BookState = {
   isLoading: false,
   cart: [],
   totalAmount: 0,
-  result: [],
+  offers: [],
+  totalCart: null,
 };
 
 const calculMinus = (total, { value }: OfferPercentageMinus): number => {
@@ -48,6 +50,38 @@ const calculSlide = (total, { value, sliceValue }: OfferSlice): number => {
   return total - value * sliceNumber;
 };
 
+const totalAmount = (books): number => {
+  return books.reduce((acc, b) => acc + b.price, 0);
+};
+
+const totalCart = (calcul: number[]): number => {
+  return Math.min(...calcul);
+};
+
+const getResultOffer = (offers, totalAmount) => {
+  let arrayType = offers.map((offer) => offer.type);
+  return [
+    arrayType.includes(typeOffers.minus)
+      ? calculMinus(
+          totalAmount,
+          offers.find((offer) => offer.type === typeOffers.minus)
+        )
+      : null,
+    arrayType.includes(typeOffers.percentage)
+      ? calculPercentage(
+          totalAmount,
+          offers.find((offer) => offer.type === typeOffers.percentage)
+        )
+      : null,
+    arrayType.includes(typeOffers.slice)
+      ? calculSlide(
+          totalAmount,
+          offers.find((offer) => offer.type === typeOffers.slice)
+        )
+      : null,
+  ].filter((el) => el != null);
+};
+
 const typeOffers = {
   minus: "minus",
   percentage: "percentage",
@@ -56,7 +90,7 @@ const typeOffers = {
 
 const initBookReducer = createReducer(
   initialState,
-  on(fromActions.loadRequest, (state) => ({ ...state, isLoading: true })),
+  on(fromActions.loadRequestBook, (state) => ({ ...state, isLoading: true })),
   on(fromActions.loadRequestSuccess, (state, { books }) => ({
     ...state,
     books,
@@ -67,30 +101,11 @@ const initBookReducer = createReducer(
     cart: [...state.cart, book],
     totalAmount: state.totalAmount + book.price,
   })),
-  on(fromActions.addRequestSuccess, (state, { offers }) => {
-    let arrayType = offers.map((offer) => offer.type);
+  on(fromActions.loadRequestCartSuccess, (state, { offers }) => {
     return {
       ...state,
-      result: [
-        arrayType.includes(typeOffers.minus)
-          ? calculMinus(
-              state.totalAmount,
-              offers.find((offer) => offer.type === typeOffers.minus)
-            )
-          : null,
-        arrayType.includes(typeOffers.percentage)
-          ? calculPercentage(
-              state.totalAmount,
-              offers.find((offer) => offer.type === typeOffers.percentage)
-            )
-          : null,
-        arrayType.includes(typeOffers.slice)
-          ? calculSlide(
-              state.totalAmount,
-              offers.find((offer) => offer.type === typeOffers.slice)
-            )
-          : null,
-      ],
+      offers,
+      totalCart: totalCart(getResultOffer(offers, state.totalAmount)),
     };
   })
 );

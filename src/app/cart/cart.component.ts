@@ -8,7 +8,7 @@ import * as fromSelectors from "../store/shop.selectors";
   styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent implements OnInit {
-  cart = this.bookStore.select(fromSelectors.selectCart);
+  // cart = this.bookStore.select(fromSelectors.selectCart);
 
   constructor(private bookStore: Store<fromReducer.BookState>) {}
 
