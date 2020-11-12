@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { ShopState } from "../store/model";
+import { ShopState } from "../store/interfacers";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",

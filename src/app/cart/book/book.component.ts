@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { Book, ShopState } from "src/app/store/model";
+import { Book, ShopState } from "src/app/store/interfacers";
 import * as fromActions from "../../store/shop.action";
 import * as fromSelectors from "../../store/shop.selectors";
 

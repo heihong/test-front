@@ -1,7 +1,7 @@
 import { createReducer, on, Action, createFeatureSelector } from "@ngrx/store";
-import { Calcul } from "./calcul";
-import { ShopState, initialState } from "./model";
+import { ShopState, initialState } from "./interfacers";
 import * as fromActions from "./shop.action";
+import { getResultOffer, totalCart } from "./utils";
 
 const initBookReducer = createReducer(
   initialState,
@@ -26,13 +26,10 @@ const initBookReducer = createReducer(
     isLoading: state.cart.length === 0 ? false : true,
   })),
   on(fromActions.loadRequestCartSuccess, (state, { offers }) => {
-    let calcul = new Calcul();
     return {
       ...state,
       offers,
-      totalCart: calcul.totalCart(
-        calcul.getResultOffer(offers, state.totalAmount)
-      ),
+      totalCart: totalCart(getResultOffer(offers, state.totalAmount)),
       isLoading: false,
     };
   })

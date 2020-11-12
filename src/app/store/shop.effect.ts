@@ -12,7 +12,7 @@ import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 import * as fromActions from "./shop.action";
 import * as fromSelectors from "./shop.selectors";
-import { Book, ShopState } from "./model";
+import { Book, ShopState } from "./interfacers";
 
 @Injectable()
 export class ShopEffects {
@@ -28,30 +28,12 @@ export class ShopEffects {
     )
   );
 
-  /* loadRequestCart$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(fromActions.loadRequestCart),
-      withLatestFrom(this.store.select(fromSelectors.selectCartbyIsbn)),
-      mergeMap(([, isbnList]) => {
-        return this.http
-          .get<{ offers }>(
-            `http://henri-potier.xebia.fr/books/${isbnList}/commercialOffers`
-          )
-          .pipe(
-            map(({ offers }) => fromActions.loadRequestCartSuccess({ offers })),
-            catchError((error) => of(fromActions.loadRequestFailure({ error })))
-          );
-      })
-    )
-  );*/
-
   loadRequestCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromActions.loadRequestCart),
       withLatestFrom(this.store.select(fromSelectors.selectCart)),
       filter(([, book]) => book.length > 0),
       mergeMap(([, cart]) => {
-        console.log(cart.length);
         if (cart.length > 0) {
           //test
           return this.http

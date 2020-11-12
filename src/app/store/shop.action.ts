@@ -1,5 +1,5 @@
 import { Action, createAction, props } from "@ngrx/store";
-import { Book, OfferPercentageMinus, OfferSlice } from "./model";
+import { Book, OfferPercentageMinus, OfferSlice } from "./interfacers";
 
 export const loadRequestBooks = createAction("[Shop] Load Request Books");
 

@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Store } from "@ngrx/store";
 
-import { Book, ShopState } from "src/app/store/model";
+import { Book, ShopState } from "src/app/store/interfacers";
 import * as fromActions from "../../store/shop.action";
 import * as fromSelectors from "../../store/shop.selectors";
 

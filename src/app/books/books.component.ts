@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import * as fromSelectors from "../store/shop.selectors";
-import { ShopState } from "../store/model";
+import { ShopState } from "../store/interfacers";
 
 @Component({
   templateUrl: "./books.component.html",

@@ -8,7 +8,7 @@ import {
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { filter, map, take, tap } from "rxjs/operators";
-import { ShopState } from "../store/model";
+import { ShopState } from "../store/interfacers";
 import * as fromActions from "../store/shop.action";
 import * as fromSelectors from "../store/shop.selectors";
 

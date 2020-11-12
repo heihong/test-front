@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
-import { Book } from "src/app/store/model";
+import { Book } from "src/app/store/interfacers";
 
 @Component({
   selector: "app-book",

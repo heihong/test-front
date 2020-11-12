@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable, Subscription } from "rxjs";
-import { ShopState } from "../store/model";
+import { ShopState } from "../store/interfacers";
 import * as fromActions from "../store/shop.action";
 import * as fromSelectors from "../store/shop.selectors";
 
