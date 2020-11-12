@@ -23,7 +23,7 @@ const initBookReducer = createReducer(
   })),
   on(fromActions.loadRequestCart, (state) => ({
     ...state,
-    isLoading: true,
+    isLoading: state.cart.length === 0 ? false : true,
   })),
   on(fromActions.loadRequestCartSuccess, (state, { offers }) => {
     let calcul = new Calcul();
