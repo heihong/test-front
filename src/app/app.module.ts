@@ -7,8 +7,7 @@ import { BooksModule } from "./books/books.module";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools/";
-import { BooksResolver } from "./resolver/books.resolver";
-import { DetailsBookModule } from "./books/details-book/details-book.module";
+import { LogGuard } from "./resolver/books.resolver";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatButton,
@@ -22,9 +21,7 @@ export const routes: Routes = [
     path: "books",
     loadChildren: () =>
       import("./books/books.module").then((m) => m.BooksModule),
-    resolve: {
-      data: BooksResolver,
-    },
+    canActivate: [LogGuard],
   },
   {
     path: "cart",
@@ -36,9 +33,7 @@ export const routes: Routes = [
       import("./books/details-book/details-book.module").then(
         (m) => m.DetailsBookModule
       ),
-    resolve: {
-      data: BooksResolver,
-    },
+    canActivate: [LogGuard],
   },
   {
     path: "",
