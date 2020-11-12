@@ -9,8 +9,8 @@ import * as fromSelectors from "../store/shop.selectors";
   styleUrls: ["./books.component.scss"],
 })
 export class BooksComponent {
-  books$ = this.bookStore.select(pipe(fromSelectors.selectBooks));
-  loading$ = this.bookStore.select(pipe(fromSelectors.selectLoading));
+  books$ = this.bookStore.select(fromSelectors.selectBooks);
+  loading$ = this.bookStore.select(fromSelectors.selectLoading);
   searchText: string;
   constructor(private bookStore: Store<fromReducer.BookState>) {}
 }

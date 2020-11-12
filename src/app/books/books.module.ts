@@ -23,10 +23,10 @@ import { FilterPipe } from "./filter.pipe";
     HttpClientModule,
     MatButtonModule,
     MatInputModule,
+    MatCardModule,
     RouterModule.forChild([
       { path: "", pathMatch: "full", component: BooksComponent },
     ]),
-    MatCardModule,
     StoreModule.forFeature("bookState", bookReducer),
     EffectsModule.forFeature([BookEffects]),
   ],

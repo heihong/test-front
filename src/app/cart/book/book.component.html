@@ -1,0 +1,13 @@
+<div (click)="more(book.isbn)">
+  <mat-card class="card-content">
+    <mat-card-content>
+      <img mat-card-image [src]="book.cover" />
+      <div>
+        <p>{{ book.title }}</p>
+        <p>{{ book.price }} €</p>
+        <p>{{ book.synopsis }} €</p>
+        <button mat-button color="primary">Delete</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

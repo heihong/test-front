@@ -101,11 +101,16 @@ const initBookReducer = createReducer(
     cart: [...state.cart, book],
     totalAmount: state.totalAmount + book.price,
   })),
+  on(fromActions.loadRequestCart, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
   on(fromActions.loadRequestCartSuccess, (state, { offers }) => {
     return {
       ...state,
       offers,
       totalCart: totalCart(getResultOffer(offers, state.totalAmount)),
+      isLoading: false,
     };
   })
 );

@@ -1,0 +1,22 @@
+.card-content {
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  img {
+    max-width: 100px;
+    margin: 10px;
+  }
+
+  p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 900px;
+    font-size: 12px;
+  }
+  .mat-card-content {
+    display: flex;
+  }
+}
