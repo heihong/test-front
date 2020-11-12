@@ -1,16 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { pipe } from "rxjs";
+import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
-import * as fromReducer from "../store/shop.reducer";
 import * as fromSelectors from "../store/shop.selectors";
+import { ShopState } from "../store/model";
 
 @Component({
   templateUrl: "./books.component.html",
   styleUrls: ["./books.component.scss"],
 })
 export class BooksComponent {
-  books$ = this.bookStore.select(fromSelectors.selectBooks);
-  loading$ = this.bookStore.select(fromSelectors.selectLoading);
+  books$ = this.shopState.select(fromSelectors.selectBooks);
+  loading$ = this.shopState.select(fromSelectors.selectLoading);
   searchText: string;
-  constructor(private bookStore: Store<fromReducer.BookState>) {}
+  constructor(private shopState: Store<ShopState>) {}
 }

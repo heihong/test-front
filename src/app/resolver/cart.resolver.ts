@@ -6,6 +6,7 @@ import {
 } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
+import { ShopState } from "../store/model";
 import * as fromActions from "../store/shop.action";
 import * as fromReducer from "../store/shop.reducer";
 import * as fromSelectors from "../store/shop.selectors";
@@ -16,13 +17,13 @@ import * as fromSelectors from "../store/shop.selectors";
 export class CartResolver implements Resolve<boolean>, OnDestroy {
   subscription = new Subscription();
 
-  constructor(private bookStore: Store<fromReducer.BookState>) {}
+  constructor(private shopState: Store<ShopState>) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     this.subscription.add(
-      this.bookStore.select(fromSelectors.selectCart).subscribe((cart) => {
+      this.shopState.select(fromSelectors.selectCart).subscribe((cart) => {
         if (cart.length) {
-          this.bookStore.dispatch(fromActions.loadRequestCart());
+          this.shopState.dispatch(fromActions.loadRequestCart());
         }
       })
     );

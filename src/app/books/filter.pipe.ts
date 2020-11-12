@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import * as fromReducer from "../store/shop.reducer";
+import { Book } from "../store/model";
 
 @Pipe({
   name: "filter",
 })
 export class FilterPipe implements PipeTransform {
-  transform(books: fromReducer.Book[], searchText: string): fromReducer.Book[] {
+  transform(books: Book[], searchText: string): Book[] {
     if (!books) {
       return [];
     }

@@ -5,6 +5,7 @@ import {
   RouterStateSnapshot,
 } from "@angular/router";
 import { Store } from "@ngrx/store";
+import { ShopState } from "../store/model";
 import * as fromActions from "../store/shop.action";
 import * as fromReducer from "../store/shop.reducer";
 
@@ -12,10 +13,10 @@ import * as fromReducer from "../store/shop.reducer";
   providedIn: "root",
 })
 export class BooksResolver implements Resolve<boolean> {
-  constructor(private bookStore: Store<fromReducer.BookState>) {}
+  constructor(private shopState: Store<ShopState>) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    this.bookStore.dispatch(fromActions.loadRequestBook());
+    this.shopState.dispatch(fromActions.loadRequestBooks());
     return state;
   }
 }

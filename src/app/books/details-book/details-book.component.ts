@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { select, Store } from "@ngrx/store";
-import { cpuUsage } from "process";
+import { Store } from "@ngrx/store";
+
+import { Book, ShopState } from "src/app/store/model";
 import * as fromActions from "../../store/shop.action";
-import * as fromReducer from "../../store/shop.reducer";
 import * as fromSelectors from "../../store/shop.selectors";
 
 @Component({
@@ -12,15 +12,14 @@ import * as fromSelectors from "../../store/shop.selectors";
 })
 export class DetailsBookComponent {
   isbn = this.route.snapshot.paramMap.get("isbn");
-  book$ = this.bookStore.select(fromSelectors.selectBook, { isbn: this.isbn });
-  loading$ = this.bookStore.select(fromSelectors.selectLoading);
+  book$ = this.shopSate.select(fromSelectors.selectBook, { isbn: this.isbn });
+  loading$ = this.shopSate.select(fromSelectors.selectLoading);
   constructor(
     private route: ActivatedRoute,
-    private bookStore: Store<fromReducer.BookState>
+    private shopSate: Store<ShopState>
   ) {}
 
-  addRequest(book: fromReducer.Book) {
-    console.log(book);
-    this.bookStore.dispatch(fromActions.addRequest({ book }));
+  addRequest(book: Book) {
+    this.shopSate.dispatch(fromActions.addRequest({ book }));
   }
 }

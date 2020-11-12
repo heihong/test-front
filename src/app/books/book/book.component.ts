@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
-import * as fromReducer from "../../store/shop.reducer";
+import { Book } from "src/app/store/model";
 
 @Component({
   selector: "app-book",
@@ -8,7 +8,7 @@ import * as fromReducer from "../../store/shop.reducer";
   styleUrls: ["./book.component.scss"],
 })
 export class BookComponent {
-  @Input() book: fromReducer.Book;
+  @Input() book: Book;
 
   constructor(private router: Router) {}
 

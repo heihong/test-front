@@ -1,11 +1,11 @@
 import { Action, createAction, props } from "@ngrx/store";
-import * as fromReducer from "./shop.reducer";
+import { Book, OfferPercentageMinus, OfferSlice } from "./model";
 
-export const loadRequestBook = createAction("[Shop] Load Request");
+export const loadRequestBooks = createAction("[Shop] Load Request Books");
 
 export const loadRequestSuccess = createAction(
   "[Shop] Load Request success",
-  props<{ books: fromReducer.Book[] }>()
+  props<{ books: Book[] }>()
 );
 
 export const loadRequestFailure = createAction(
@@ -15,12 +15,12 @@ export const loadRequestFailure = createAction(
 
 export const addRequest = createAction(
   "[Shop] Load add request",
-  props<{ book: fromReducer.Book }>()
-);
-
-export const loadRequestCartSuccess = createAction(
-  "[Shop] Load add Request success",
-  props<{ offers: any }>()
+  props<{ book: Book }>()
 );
 
 export const loadRequestCart = createAction("[Shop] Load Request cart success");
+
+export const loadRequestCartSuccess = createAction(
+  "[Shop] Load add Request success",
+  props<{ offers: OfferPercentageMinus[] | OfferSlice[] }>()
+);

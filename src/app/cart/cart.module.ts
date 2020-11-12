@@ -5,8 +5,8 @@ import { MatButtonModule, MatCardModule } from "@angular/material";
 import { RouterModule } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
-import { BookEffects } from "../store/shop.effect";
-import { bookReducer } from "../store/shop.reducer";
+import { ShopEffects } from "../store/shop.effect";
+import { shopReducer } from "../store/shop.reducer";
 import { BookCartComponent } from "./book/book.component";
 import { CartComponent } from "./cart.component";
 
@@ -19,8 +19,8 @@ import { CartComponent } from "./cart.component";
     RouterModule.forChild([
       { path: "", pathMatch: "full", component: CartComponent },
     ]),
-    StoreModule.forFeature("bookState", bookReducer),
-    EffectsModule.forFeature([BookEffects]),
+    StoreModule.forFeature("shopState", shopReducer),
+    EffectsModule.forFeature([ShopEffects]),
   ],
   declarations: [CartComponent, BookCartComponent],
 })
