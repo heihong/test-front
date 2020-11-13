@@ -34,7 +34,6 @@ export class ShopEffects {
       withLatestFrom(this.store.select(fromSelectors.selectCart)),
       filter(([, book]) => book.length > 0),
       mergeMap(([, cart]) => {
-        //test
         return this.http
           .get<{ offers }>(
             `http://henri-potier.xebia.fr/books/${cart.map(

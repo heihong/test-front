@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Book, OfferPercentageMinus, OfferSlice } from "./interfacers";
+import { Book, Offer } from "./interfacers";
 
 export const loadRequestBooks = createAction("[Shop] Load Request Books");
 
@@ -22,7 +22,7 @@ export const loadRequestCart = createAction("[Shop] Load Request cart success");
 
 export const loadRequestCartSuccess = createAction(
   "[Shop] Load Request success cart",
-  props<{ offers: OfferPercentageMinus[] | OfferSlice[] }>()
+  props<{ offers: Offer[] }>()
 );
 
 export const deleteRequest = createAction(

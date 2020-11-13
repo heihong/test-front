@@ -16,20 +16,13 @@ export interface OfferSlice {
   sliceValue: number;
 }
 
+export type Offer = OfferPercentageMinus | OfferSlice;
+
 export interface ShopState {
   books: Book[];
   isLoading: boolean;
   cart: Book[];
   totalAmount: number;
-  offers: OfferPercentageMinus[] | OfferSlice[];
+  offers: Offer[];
   totalCart: number;
 }
-
-export const initialState: ShopState = {
-  books: [],
-  isLoading: false,
-  cart: [],
-  totalAmount: 0,
-  offers: [],
-  totalCart: null,
-};
