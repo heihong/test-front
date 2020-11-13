@@ -3,12 +3,9 @@
   <input matInput type="text" [(ngModel)]="searchText" />
 </mat-form-field>
 <ng-container
-  *ngIf="
-    { books: books$ | async, loading: loading$ | async } as data;
-    else loading
-  "
+  *ngIf="{ books: books$ | async, loading: loading$ | async } as data"
 >
-  <div *ngIf="data.loading === false" class="container">
+  <div *ngIf="data.loading === false; else loading" class="container">
     <app-book
       *ngFor="let book of data.books | filter: searchText"
       [book]="book"
@@ -17,5 +14,5 @@
 </ng-container>
 
 <ng-template #loading>
-  <div class="col-12 text-center">is loading</div>
+  <mat-spinner></mat-spinner>
 </ng-template>

@@ -1,7 +1,16 @@
 import { createReducer, on, Action, createFeatureSelector } from "@ngrx/store";
-import { ShopState, initialState } from "./interfacers";
+import { ShopState } from "./interfacers";
 import * as fromActions from "./shop.action";
 import { getResultOffer, totalCart } from "./utils";
+
+export const initialState: ShopState = {
+  books: [],
+  isLoading: false,
+  cart: [],
+  totalAmount: 0,
+  offers: [],
+  totalCart: null,
+};
 
 const initBookReducer = createReducer(
   initialState,

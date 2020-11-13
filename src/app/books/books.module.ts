@@ -6,6 +6,7 @@ import {
   MatCardModule,
   MatButtonModule,
   MatInputModule,
+  MatProgressSpinnerModule,
 } from "@angular/material";
 import { RouterModule } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
@@ -24,6 +25,7 @@ import { FilterPipe } from "./filter.pipe";
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       { path: "", pathMatch: "full", component: BooksComponent },
     ]),

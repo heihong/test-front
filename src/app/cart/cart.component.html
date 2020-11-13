@@ -1,19 +1,16 @@
 <ng-container
-  *ngIf="
-    {
-      cart: cart$ | async,
-      loading: loading$ | async,
-      total: total$ | async
-    } as data;
-    else loading
-  "
-  ><div *ngIf="data.loading === false" class="container">
+  *ngIf="{
+    cart: cart$ | async,
+    loading: loading$ | async,
+    total: total$ | async
+  } as data"
+  ><div *ngIf="data.loading === false; else loading" class="container">
     <app-book-cart *ngFor="let cart of data.cart" [book]="cart"></app-book-cart>
   </div>
   <p *ngIf="data.cart.length > 0">Total : {{ data.total }} €</p>
   <p *ngIf="data.cart.length == 0">Panier vide</p>
-</ng-container>
 
-<ng-template #loading>
-  <div class="col-12 text-center">is loading</div>
-</ng-template>
+  <ng-template #loading>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</ng-container>
