@@ -1,7 +1,7 @@
 <div class="container" *ngIf="{ book: book$ | async } as data">
   <h1>{{ data.book?.title }}</h1>
   <div class="body-container">
-    <img [src]="data.book?.cover" alt="Photo of a Shiba Inu" />
+    <img [src]="data.book?.cover" [alt]="data.book?.title" />
     <div class="items-container">
       <p>
         {{ data.book?.synopsis }}

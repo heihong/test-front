@@ -1,6 +1,5 @@
-import { Injectable, OnDestroy } from "@angular/core";
+import { Injectable } from "@angular/core";
 import {
-  Resolve,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   CanActivate,

@@ -3,18 +3,13 @@ import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { RouterModule, Routes } from "@angular/router";
-import { BooksModule } from "./books/books.module";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools/";
-import { LogGuard } from "./resolver/books.resolver";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {
-  MatButton,
-  MatButtonModule,
-  MatToolbarModule,
-} from "@angular/material";
+import { MatButtonModule, MatToolbarModule } from "@angular/material";
 import { HeaderComponent } from "./header/header.component";
+import { LogGuard } from "./guards/log.guard";
 
 export const routes: Routes = [
   {

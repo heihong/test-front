@@ -34,21 +34,17 @@ export class ShopEffects {
       withLatestFrom(this.store.select(fromSelectors.selectCart)),
       filter(([, book]) => book.length > 0),
       mergeMap(([, cart]) => {
-        if (cart.length > 0) {
-          //test
-          return this.http
-            .get<{ offers }>(
-              `http://henri-potier.xebia.fr/books/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers`
-            )
-            .pipe(
-              map(({ offers }) =>
-                fromActions.loadRequestCartSuccess({ offers })
-              ),
-              catchError((error) =>
-                of(fromActions.loadRequestFailure({ error }))
-              )
-            );
-        }
+        //test
+        return this.http
+          .get<{ offers }>(
+            `http://henri-potier.xebia.fr/books/${cart.map(
+              (book) => book.isbn
+            )}/commercialOffers`
+          )
+          .pipe(
+            map(({ offers }) => fromActions.loadRequestCartSuccess({ offers })),
+            catchError((error) => of(fromActions.loadRequestFailure({ error })))
+          );
       })
     )
   );

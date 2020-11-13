@@ -11,11 +11,6 @@ export const selectCart = createSelector(
   (state) => state.cart
 );
 
-export const selectCartbyIsbn = createSelector(
-  fromReducer.bookStateSelector,
-  (state) => state.cart.map((book) => book.isbn)
-);
-
 export const selectBook = createSelector(
   fromReducer.bookStateSelector,
   (state, { isbn }) => state.books.find((book) => book.isbn === isbn)
