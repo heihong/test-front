@@ -5,7 +5,6 @@ import {
   CanActivate,
 } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { Subscription } from "rxjs";
 import { filter, map, take, tap } from "rxjs/operators";
 import { ShopState } from "../store/interfacers";
 import * as fromActions from "../store/shop.action";

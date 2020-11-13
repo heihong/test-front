@@ -11,7 +11,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { ShopEffects } from "../store/shop.effect";
 import { shopReducer } from "../store/shop.reducer";
-import { BookCartComponent } from "./book/book.component";
+import { BookCartComponent } from "./book/book-cart.component";
 import { CartComponent } from "./cart.component";
 
 @NgModule({

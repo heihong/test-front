@@ -21,7 +21,7 @@ export const selectLoading = createSelector(
   (state) => state.isLoading
 );
 
-export const selecttotalCart = createSelector(
+export const selectTotalCart = createSelector(
   fromReducer.bookStateSelector,
   (state) => state.totalCart
 );

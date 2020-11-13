@@ -11,7 +11,7 @@ import * as fromSelectors from "../store/shop.selectors";
 })
 export class CartComponent {
   cart$ = this.shopState.select(fromSelectors.selectCart);
-  total$ = this.shopState.select(fromSelectors.selecttotalCart);
+  total$ = this.shopState.select(fromSelectors.selectTotalCart);
   loading$ = this.shopState.select(fromSelectors.selectLoading);
 
   subscription = new Subscription();

@@ -3,12 +3,11 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Book, ShopState } from "src/app/store/interfacers";
 import * as fromActions from "../../store/shop.action";
-import * as fromSelectors from "../../store/shop.selectors";
 
 @Component({
   selector: "app-book-cart",
-  templateUrl: "./book.component.html",
-  styleUrls: ["./book.component.scss"],
+  templateUrl: "./book-cart.component.html",
+  styleUrls: ["./book-cart.component.scss"],
 })
 export class BookCartComponent {
   @Input() book: Book;
