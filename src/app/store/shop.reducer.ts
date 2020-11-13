@@ -25,16 +25,21 @@ const initBookReducer = createReducer(
     cart: [...state.cart, book],
     totalAmount: state.totalAmount + book.price,
   })),
-  on(fromActions.deleteRequest, (state, { book }) => ({
-    ...state,
-    cart: state.cart.filter((el) => el.isbn !== book.isbn),
-    totalAmount: state.totalAmount - book.price,
-  })),
+  on(fromActions.deleteRequest, (state, { index, book }) => {
+    let cartCopy = [...state.cart];
+    cartCopy.splice(index, 1);
+    return {
+      ...state,
+      cart: cartCopy,
+      totalAmount: state.totalAmount - book.price,
+    };
+  }),
   on(fromActions.loadRequestCart, (state) => ({
     ...state,
     isLoading: state.cart.length === 0 ? false : true,
   })),
   on(fromActions.loadRequestCartSuccess, (state, { offers }) => {
+    console.log(state);
     return {
       ...state,
       offers,

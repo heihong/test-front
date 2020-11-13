@@ -27,5 +27,5 @@ export const loadRequestCartSuccess = createAction(
 
 export const deleteRequest = createAction(
   "[Shop] Load delete Request success",
-  props<{ book: Book }>()
+  props<{ index: number; book: Book }>()
 );

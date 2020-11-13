@@ -11,7 +11,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { ShopEffects } from "../store/shop.effect";
 import { shopReducer } from "../store/shop.reducer";
-import { BookCartComponent } from "./book/book-cart.component";
+import { BookComponent } from "./book/book.component";
 import { CartComponent } from "./cart.component";
 
 @NgModule({
@@ -27,6 +27,6 @@ import { CartComponent } from "./cart.component";
     StoreModule.forFeature("shopState", shopReducer),
     EffectsModule.forFeature([ShopEffects]),
   ],
-  declarations: [CartComponent, BookCartComponent],
+  declarations: [CartComponent, BookComponent],
 })
 export class CartModule {}

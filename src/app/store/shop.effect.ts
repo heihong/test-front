@@ -48,6 +48,26 @@ export class ShopEffects {
     )
   );
 
+  deleteRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromActions.deleteRequest),
+      withLatestFrom(this.store.select(fromSelectors.selectCart)),
+      filter(([, book]) => book.length > 0),
+      mergeMap(([, cart]) => {
+        return this.http
+          .get<{ offers }>(
+            `http://henri-potier.xebia.fr/books/${cart.map(
+              (book) => book.isbn
+            )}/commercialOffers`
+          )
+          .pipe(
+            map(({ offers }) => fromActions.loadRequestCartSuccess({ offers })),
+            catchError((error) => of(fromActions.loadRequestFailure({ error })))
+          );
+      })
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private http: HttpClient,

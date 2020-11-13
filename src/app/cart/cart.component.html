@@ -5,7 +5,11 @@
     total: total$ | async
   } as data"
   ><div *ngIf="data.loading === false; else loading" class="container">
-    <app-book-cart *ngFor="let cart of data.cart" [book]="cart"></app-book-cart>
+    <app-book
+      *ngFor="let cart of data.cart; let index = index"
+      [book]="cart"
+      [index]="index"
+    ></app-book>
   </div>
   <p *ngIf="data.cart.length > 0">Total : {{ data.total }} €</p>
   <p *ngIf="data.cart.length == 0">Panier vide</p>

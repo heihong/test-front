@@ -5,20 +5,19 @@ import { Book, ShopState } from "src/app/store/interfacers";
 import * as fromActions from "../../store/shop.action";
 
 @Component({
-  selector: "app-book-cart",
-  templateUrl: "./book-cart.component.html",
-  styleUrls: ["./book-cart.component.scss"],
+  selector: "app-book",
+  templateUrl: "./book.component.html",
+  styleUrls: ["./book.component.scss"],
 })
-export class BookCartComponent {
+export class BookComponent {
   @Input() book: Book;
+  @Input() index: number;
 
   constructor(private router: Router, private shopSate: Store<ShopState>) {}
 
-  more(isbn: string) {
-    this.router.navigate(["/details-book", isbn]);
-  }
-
   delete(book) {
-    this.shopSate.dispatch(fromActions.deleteRequest({ book }));
+    this.shopSate.dispatch(
+      fromActions.deleteRequest({ index: this.index, book })
+    );
   }
 }
