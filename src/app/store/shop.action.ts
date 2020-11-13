@@ -1,4 +1,4 @@
-import { Action, createAction, props } from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
 import { Book, OfferPercentageMinus, OfferSlice } from "./interfacers";
 
 export const loadRequestBooks = createAction("[Shop] Load Request Books");
