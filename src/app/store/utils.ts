@@ -24,11 +24,16 @@ export const calculSlide = (
   return total - value * sliceNumber;
 };
 
-export const totalCart = (calcul: number[]): number => {
+export const total = (books): number => {
+  return books.reduce((acc, b) => acc + b.price, 0);
+};
+
+export const getMin = (calcul: number[]): number => {
   return Math.min(...calcul);
 };
 
-export const getResultOffer = (offers, totalAmount) => {
+export const getResultOffer = (offers, cart) => {
+  let totalAmount = total(cart);
   let arrayType = offers.map((offer) => offer.type);
   return [
     arrayType.includes(typeOffers.minus)

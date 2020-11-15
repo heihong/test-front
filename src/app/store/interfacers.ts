@@ -24,5 +24,5 @@ export interface ShopState {
   cart: Book[];
   totalAmount: number;
   offers: Offer[];
-  totalCart: number;
+  minPrices: number;
 }

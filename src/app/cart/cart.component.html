@@ -2,7 +2,7 @@
   *ngIf="{
     cart: cart$ | async,
     loading: loading$ | async,
-    total: total$ | async
+    minPrices: minPrices$ | async
   } as data"
   ><div *ngIf="data.loading === false; else loading" class="container">
     <app-book
@@ -11,7 +11,7 @@
       [index]="index"
     ></app-book>
   </div>
-  <p *ngIf="data.cart.length > 0">Total : {{ data.total }} €</p>
+  <p *ngIf="data.cart.length > 0">Total : {{ data.minPrices }} €</p>
   <p *ngIf="data.cart.length == 0">Panier vide</p>
 
   <ng-template #loading>

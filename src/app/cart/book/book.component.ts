@@ -15,9 +15,7 @@ export class BookComponent {
 
   constructor(private router: Router, private shopSate: Store<ShopState>) {}
 
-  delete(book) {
-    this.shopSate.dispatch(
-      fromActions.deleteRequest({ index: this.index, book })
-    );
+  delete() {
+    this.shopSate.dispatch(fromActions.deleteRequest({ index: this.index }));
   }
 }
